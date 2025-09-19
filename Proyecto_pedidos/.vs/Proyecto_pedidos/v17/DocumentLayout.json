@@ -1,7 +1,24 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\Users\\estudiante\\Pictures\\Proyecto_Pedidos\\Proyecto_pedidos\\",
-  "Documents": [],
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{FD5C5CBB-E1EC-4B64-BCBE-A2C2DD7334D4}|Proyecto_pedidos\\Proyecto_pedidos.csproj|c:\\users\\estudiante\\pictures\\proyecto_pedidos\\proyecto_pedidos\\proyecto_pedidos\\models\\usuario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FD5C5CBB-E1EC-4B64-BCBE-A2C2DD7334D4}|Proyecto_pedidos\\Proyecto_pedidos.csproj|solutionrelative:proyecto_pedidos\\models\\usuario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FD5C5CBB-E1EC-4B64-BCBE-A2C2DD7334D4}|Proyecto_pedidos\\Proyecto_pedidos.csproj|c:\\users\\estudiante\\pictures\\proyecto_pedidos\\proyecto_pedidos\\proyecto_pedidos\\models\\errorviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FD5C5CBB-E1EC-4B64-BCBE-A2C2DD7334D4}|Proyecto_pedidos\\Proyecto_pedidos.csproj|solutionrelative:proyecto_pedidos\\models\\errorviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FD5C5CBB-E1EC-4B64-BCBE-A2C2DD7334D4}|Proyecto_pedidos\\Proyecto_pedidos.csproj|c:\\users\\estudiante\\pictures\\proyecto_pedidos\\proyecto_pedidos\\proyecto_pedidos\\models\\producto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FD5C5CBB-E1EC-4B64-BCBE-A2C2DD7334D4}|Proyecto_pedidos\\Proyecto_pedidos.csproj|solutionrelative:proyecto_pedidos\\models\\producto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FD5C5CBB-E1EC-4B64-BCBE-A2C2DD7334D4}|Proyecto_pedidos\\Proyecto_pedidos.csproj|c:\\users\\estudiante\\pictures\\proyecto_pedidos\\proyecto_pedidos\\proyecto_pedidos\\models\\pedido.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FD5C5CBB-E1EC-4B64-BCBE-A2C2DD7334D4}|Proyecto_pedidos\\Proyecto_pedidos.csproj|solutionrelative:proyecto_pedidos\\models\\pedido.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -9,7 +26,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": -1,
+          "SelectedChildIndex": 9,
           "Children": [
             {
               "$type": "Bookmark",
@@ -38,6 +55,58 @@
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{e506b91c-c606-466a-90a9-123d1d1e12b3}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "pedido.cs",
+              "DocumentMoniker": "C:\\Users\\estudiante\\Pictures\\Proyecto_Pedidos\\Proyecto_pedidos\\Proyecto_pedidos\\Models\\pedido.cs",
+              "RelativeDocumentMoniker": "Proyecto_pedidos\\Models\\pedido.cs",
+              "ToolTip": "C:\\Users\\estudiante\\Pictures\\Proyecto_Pedidos\\Proyecto_pedidos\\Proyecto_pedidos\\Models\\pedido.cs*",
+              "RelativeToolTip": "Proyecto_pedidos\\Models\\pedido.cs*",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAcAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-18T23:50:19.35Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Producto.cs",
+              "DocumentMoniker": "C:\\Users\\estudiante\\Pictures\\Proyecto_Pedidos\\Proyecto_pedidos\\Proyecto_pedidos\\Models\\Producto.cs",
+              "RelativeDocumentMoniker": "Proyecto_pedidos\\Models\\Producto.cs",
+              "ToolTip": "C:\\Users\\estudiante\\Pictures\\Proyecto_Pedidos\\Proyecto_pedidos\\Proyecto_pedidos\\Models\\Producto.cs*",
+              "RelativeToolTip": "Proyecto_pedidos\\Models\\Producto.cs*",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-18T23:47:58.664Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Usuario.cs",
+              "DocumentMoniker": "C:\\Users\\estudiante\\Pictures\\Proyecto_Pedidos\\Proyecto_pedidos\\Proyecto_pedidos\\Models\\Usuario.cs",
+              "RelativeDocumentMoniker": "Proyecto_pedidos\\Models\\Usuario.cs",
+              "ToolTip": "C:\\Users\\estudiante\\Pictures\\Proyecto_Pedidos\\Proyecto_pedidos\\Proyecto_pedidos\\Models\\Usuario.cs*",
+              "RelativeToolTip": "Proyecto_pedidos\\Models\\Usuario.cs*",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-18T23:46:03.631Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "ErrorViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\estudiante\\Pictures\\Proyecto_Pedidos\\Proyecto_pedidos\\Proyecto_pedidos\\Models\\ErrorViewModel.cs",
+              "RelativeDocumentMoniker": "Proyecto_pedidos\\Models\\ErrorViewModel.cs",
+              "ToolTip": "C:\\Users\\estudiante\\Pictures\\Proyecto_Pedidos\\Proyecto_pedidos\\Proyecto_pedidos\\Models\\ErrorViewModel.cs",
+              "RelativeToolTip": "Proyecto_pedidos\\Models\\ErrorViewModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-18T23:42:23.978Z",
+              "EditorCaption": ""
             }
           ]
         },
