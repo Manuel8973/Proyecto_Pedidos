@@ -1,0 +1,86 @@
+@{
+    ViewData["Title"] = "Iniciar Sesión";
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/login.css" asp-append-version="true" />
+}
+
+<div class="login-container">
+  <div class="row justify-content-center w-100">
+        <div class="col-12">
+   <div class="card login-card shadow-lg border-0 mx-auto">
+          <div class="card-header text-white text-center py-4">
+   <h2 class="mb-0">
+            <i class="bi bi-box-arrow-in-right me-2"></i>
+             Iniciar Sesión
+ </h2>
+      <p class="mb-0 opacity-75">Accede a tu cuenta WAMVC</p>
+  </div>
+        
+  <div class="card-body p-4">
+      @if (ViewBag.Error != null)
+     {
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+   <i class="bi bi-exclamation-triangle-fill me-2"></i>
+       @ViewBag.Error
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+      </div>
+        }
+
+           <form method="post" class="login-form">
+   <div class="mb-4">
+       <label for="email" class="form-label">
+       <i class="bi bi-envelope me-1"></i>Email
+           </label>
+            <input type="email"
+    class="form-control form-control-lg"
+           id="email"
+            name="email"
+       placeholder="correo@ejemplo.com"
+           required />
+         </div>
+
+  <div class="mb-4">
+     <label for="password" class="form-label">
+ <i class="bi bi-lock me-1"></i>Contraseña
+  </label>
+             <input type="password"
+               class="form-control form-control-lg"
+    id="password"
+         name="password"
+  placeholder="Ingresa tu contraseña"
+    required />
+  </div>
+
+     <div class="d-grid gap-2 mb-4">
+        <button type="submit" class="btn btn-primary btn-lg">
+         <i class="bi bi-box-arrow-in-right me-2"></i>
+    Iniciar Sesión
+          </button>
+     </div>
+           </form>
+
+    <hr class="my-4">
+
+              <div class="text-center login-links">
+     <p class="mb-2 text-muted">
+           <i class="bi bi-info-circle me-1"></i>
+           ¿No tienes cuenta?
+   </p>
+   <a asp-controller="Account" asp-action="Register" class="btn btn-outline-primary">
+         <i class="bi bi-person-plus me-2"></i>Crear cuenta nueva
+  </a>
+         </div>
+       </div>
+    
+          <div class="card-footer text-center py-3">
+        <small class="text-muted">
+         <i class="bi bi-shield-check me-1"></i>
+    Conexión segura y cifrada
+ </small>
+       </div>
+   </div>
+     </div>
+    </div>
+</div>

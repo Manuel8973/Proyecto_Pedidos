@@ -1,0 +1,149 @@
+@model dynamic
+
+@{
+    ViewData["Title"] = "Dashboard de Administración";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+    <h2><i class="bi bi-speedometer2"></i> Dashboard de Administración</h2>
+<span class="badge bg-success">Administrador: @User.Identity.Name</span>
+        </div>
+
+        <!-- Tarjetas de estadísticas -->
+     <div class="row mb-4">
+    <div class="col-md-2">
+   <div class="card text-white bg-primary">
+   <div class="card-body">
+  <div class="d-flex align-items-center">
+  <div>
+  <h5 class="card-title">Usuarios</h5>
+         <h3 class="mb-0">@Model.TotalUsuarios</h3>
+    <small>@Model.UsuariosActivos activos</small>
+      </div>
+      <div class="ms-auto">
+       <i class="bi bi-people fs-2"></i>
+     </div>
+      </div>
+    </div>
+    </div>
+   </div>
+
+   <div class="col-md-2">
+     <div class="card text-white bg-success">
+<div class="card-body">
+     <div class="d-flex align-items-center">
+      <div>
+     <h5 class="card-title">Clientes</h5>
+      <h3 class="mb-0">@Model.TotalClientes</h3>
+         <small>registrados</small>
+        </div>
+     <div class="ms-auto">
+     <i class="bi bi-person-check fs-2"></i>
+   </div>
+        </div>
+  </div>
+  </div>
+   </div>
+
+     <div class="col-md-2">
+  <div class="card text-white bg-warning">
+    <div class="card-body">
+    <div class="d-flex align-items-center">
+         <div>
+       <h5 class="card-title">Productos</h5>
+        <h3 class="mb-0">@Model.TotalProductos</h3>
+    <small>en catálogo</small>
+        </div>
+      <div class="ms-auto">
+      <i class="bi bi-box-seam fs-2"></i>
+         </div>
+         </div>
+       </div>
+    </div>
+  </div>
+
+      <div class="col-md-3">
+       <div class="card text-white bg-info">
+<div class="card-body">
+        <div class="d-flex align-items-center">
+      <div>
+       <h5 class="card-title">Pedidos</h5>
+        <h3 class="mb-0">@Model.TotalPedidos</h3>
+   <small>@Model.PedidosHoy hoy</small>
+    </div>
+       <div class="ms-auto">
+        <i class="bi bi-cart-check fs-2"></i>
+  </div>
+      </div>
+     </div>
+       </div>
+    </div>
+
+ <div class="col-md-3">
+      <div class="card text-white bg-dark">
+    <div class="card-body">
+        <div class="d-flex align-items-center">
+         <div>
+    <h5 class="card-title">Sistema</h5>
+        <h3 class="mb-0"><i class="bi bi-check-circle"></i></h3>
+    <small>funcionando</small>
+        </div>
+       <div class="ms-auto">
+         <i class="bi bi-gear-fill fs-2"></i>
+       </div>
+     </div>
+       </div>
+   </div>
+      </div>
+ </div>
+
+        <!-- Acciones rápidas -->
+   <div class="row">
+     <div class="col-md-12">
+        <div class="card">
+  <div class="card-header">
+          <h5 class="mb-0"><i class="bi bi-lightning"></i> Acciones Rápidas</h5>
+     </div>
+   <div class="card-body">
+<div class="row">
+   <div class="col-md-3 mb-3">
+ <div class="d-grid">
+      <a asp-controller="Admin" asp-action="Usuarios" class="btn btn-outline-primary btn-lg">
+       <i class="bi bi-people"></i><br>
+     Gestionar Usuarios
+      </a>
+    </div>
+ </div>
+      <div class="col-md-3 mb-3">
+     <div class="d-grid">
+      <a asp-controller="Producto" asp-action="Index" class="btn btn-outline-success btn-lg">
+     <i class="bi bi-box-seam"></i><br>
+    Gestionar Productos
+       </a>
+</div>
+        </div>
+      <div class="col-md-3 mb-3">
+     <div class="d-grid">
+    <a asp-controller="Cliente" asp-action="Index" class="btn btn-outline-warning btn-lg">
+      <i class="bi bi-person-check"></i><br>
+      Gestionar Clientes
+   </a>
+       </div>
+    </div>
+         <div class="col-md-3 mb-3">
+       <div class="d-grid">
+     <a asp-controller="Pedido" asp-action="Index" class="btn btn-outline-info btn-lg">
+        <i class="bi bi-cart-check"></i><br>
+Ver Todos los Pedidos
+       </a>
+    </div>
+      </div>
+     </div>
+   </div>
+     </div>
+   </div>
+   </div>
+    </div>
+</div>

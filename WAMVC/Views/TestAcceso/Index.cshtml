@@ -1,0 +1,174 @@
+@{
+    ViewData["Title"] = "Verificación de Accesos";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <h2><i class="bi bi-shield-check"></i> Verificación de Accesos del Sistema</h2>
+        
+    <div class="alert alert-info">
+          <i class="bi bi-info-circle"></i> 
+      Esta página te muestra tu nivel de acceso actual y las funcionalidades disponibles.
+        </div>
+
+    <!-- Información del usuario actual -->
+      <div class="card mb-4">
+     <div class="card-header">
+   <h5><i class="bi bi-person-badge"></i> Tu Información de Usuario</h5>
+     </div>
+   <div class="card-body">
+    <div class="row">
+  <div class="col-md-6">
+   <p><strong>Usuario:</strong> @ViewBag.UsuarioActual</p>
+      <p><strong>Rol:</strong> 
+         <span class="badge bg-@(ViewBag.RolActual == "Admin" ? "danger" : ViewBag.RolActual == "Empleado" ? "warning" : "info")">
+       @ViewBag.RolActual
+      </span>
+  </p>
+        </div>
+       <div class="col-md-6">
+     <p><strong>Permisos:</strong></p>
+   <ul class="list-unstyled">
+      @if (ViewBag.EsAdmin)
+         {
+      <li><i class="bi bi-check-circle text-success"></i> Administrador</li>
+   }
+        @if (ViewBag.EsEmpleado)
+    {
+  <li><i class="bi bi-check-circle text-success"></i> Empleado</li>
+    }
+      @if (ViewBag.EsUsuario)
+    {
+    <li><i class="bi bi-check-circle text-success"></i> Usuario</li>
+ }
+       </ul>
+     </div>
+    </div>
+     </div>
+      </div>
+
+        <!-- Pruebas de acceso -->
+  <div class="card">
+     <div class="card-header">
+       <h5><i class="bi bi-list-check"></i> Pruebas de Acceso por Políticas</h5>
+ </div>
+      <div class="card-body">
+     <div class="row">
+    <div class="col-md-6 mb-3">
+   <h6>Acceso Solo para Administradores</h6>
+         <a asp-action="SoloAdmin" class="btn btn-danger">
+        <i class="bi bi-shield-exclamation"></i> Probar AdminOnly
+      </a>
+     </div>
+    
+      <div class="col-md-6 mb-3">
+       <h6>Acceso para Admin o Empleado</h6>
+      <a asp-action="AdminOEmpleado" class="btn btn-warning">
+    <i class="bi bi-shield-check"></i> Probar AdminOrEmpleado
+     </a>
+     </div>
+
+        <div class="col-md-6 mb-3">
+     <h6>Acceso Solo para Clientes</h6>
+       <a asp-action="SoloCliente" class="btn btn-info">
+    <i class="bi bi-person-check"></i> Probar ClienteOnly
+      </a>
+  </div>
+     
+       <div class="col-md-6 mb-3">
+    <h6>Acceso Público (Sin autenticación)</h6>
+   <a asp-action="AccesoPublico" class="btn btn-success">
+      <i class="bi bi-globe"></i> Acceso Público
+  </a>
+       </div>
+      </div>
+    </div>
+ </div>
+
+   <!-- Guía de funcionalidades por rol -->
+     <div class="card mt-4">
+         <div class="card-header">
+      <h5><i class="bi bi-diagram-3"></i> Funcionalidades por Rol</h5>
+      </div>
+       <div class="card-body">
+      <div class="table-responsive">
+       <table class="table table-bordered">
+     <thead class="table-dark">
+         <tr>
+      <th>Funcionalidad</th>
+ <th class="text-center">Admin</th>
+       <th class="text-center">Empleado</th>
+    <th class="text-center">Usuario/Cliente</th>
+        <th class="text-center">Anónimo</th>
+    </tr>
+        </thead>
+         <tbody>
+     <tr>
+      <td><strong>Gestionar Productos</strong></td>
+     <td class="text-center text-success"><i class="bi bi-check-lg"></i></td>
+    <td class="text-center text-danger"><i class="bi bi-x-lg"></i></td>
+        <td class="text-center text-danger"><i class="bi bi-x-lg"></i></td>
+     <td class="text-center text-danger"><i class="bi bi-x-lg"></i></td>
+      </tr>
+   <tr>
+   <td><strong>Gestionar Clientes</strong></td>
+<td class="text-center text-success"><i class="bi bi-check-lg"></i></td>
+    <td class="text-center text-success"><i class="bi bi-check-lg"></i></td>
+       <td class="text-center text-danger"><i class="bi bi-x-lg"></i></td>
+       <td class="text-center text-danger"><i class="bi bi-x-lg"></i></td>
+     </tr>
+    <tr>
+      <td><strong>Ver Todos los Pedidos</strong></td>
+       <td class="text-center text-success"><i class="bi bi-check-lg"></i></td>
+ <td class="text-center text-success"><i class="bi bi-check-lg"></i></td>
+     <td class="text-center text-danger"><i class="bi bi-x-lg"></i></td>
+    <td class="text-center text-danger"><i class="bi bi-x-lg"></i></td>
+     </tr>
+  <tr>
+    <td><strong>Crear/Editar Pedidos</strong></td>
+      <td class="text-center text-success"><i class="bi bi-check-lg"></i></td>
+     <td class="text-center text-success"><i class="bi bi-check-lg"></i></td>
+       <td class="text-center text-danger"><i class="bi bi-x-lg"></i></td>
+     <td class="text-center text-danger"><i class="bi bi-x-lg"></i></td>
+ </tr>
+      <tr>
+      <td><strong>Eliminar Pedidos</strong></td>
+      <td class="text-center text-success"><i class="bi bi-check-lg"></i></td>
+   <td class="text-center text-danger"><i class="bi bi-x-lg"></i></td>
+       <td class="text-center text-danger"><i class="bi bi-x-lg"></i></td>
+    <td class="text-center text-danger"><i class="bi bi-x-lg"></i></td>
+       </tr>
+      <tr>
+<td><strong>Ver Propios Pedidos</strong></td>
+       <td class="text-center text-success"><i class="bi bi-check-lg"></i></td>
+     <td class="text-center text-success"><i class="bi bi-check-lg"></i></td>
+      <td class="text-center text-success"><i class="bi bi-check-lg"></i></td>
+   <td class="text-center text-danger"><i class="bi bi-x-lg"></i></td>
+    </tr>
+        <tr>
+       <td><strong>Gestionar Detalles Pedidos</strong></td>
+    <td class="text-center text-success"><i class="bi bi-check-lg"></i></td>
+ <td class="text-center text-success"><i class="bi bi-check-lg"></i></td>
+      <td class="text-center text-danger"><i class="bi bi-x-lg"></i></td>
+      <td class="text-center text-danger"><i class="bi bi-x-lg"></i></td>
+   </tr>
+  <tr>
+    <td><strong>Panel de Administración</strong></td>
+    <td class="text-center text-success"><i class="bi bi-check-lg"></i></td>
+<td class="text-center text-danger"><i class="bi bi-x-lg"></i></td>
+  <td class="text-center text-danger"><i class="bi bi-x-lg"></i></td>
+      <td class="text-center text-danger"><i class="bi bi-x-lg"></i></td>
+      </tr>
+    </tbody>
+      </table>
+     </div>
+   </div>
+      </div>
+
+        <div class="mt-3">
+   <a asp-controller="Home" asp-action="Index" class="btn btn-primary">
+        <i class="bi bi-arrow-left"></i> Volver al Inicio
+     </a>
+        </div>
+   </div>
+</div>

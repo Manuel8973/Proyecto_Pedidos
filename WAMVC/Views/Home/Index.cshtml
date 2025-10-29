@@ -1,0 +1,221 @@
+﻿@model HomeModel
+@{
+    ViewData["Title"] = "Inicio - Artesanías";
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/home.css" asp-append-version="true" />
+}
+
+<!-- Hero Section -->
+<div class="hero-section text-center mb-5 p-5">
+    <div class="hero-content">
+     <h1 class="display-3 fw-bold mb-3">@Model.Mensaje</h1>
+        <h2 class="h2 text-secondary mb-4">@Model.Destinatario</h2>
+        <p class="lead fs-4 mb-4">Gestiona tu negocio de artesanías de manera eficiente y moderna</p>
+      
+        @if (User.Identity.IsAuthenticated)
+  {
+    <div class="hero-stats row g-3 mb-4">
+      <div class="col-md-3">
+<div class="stat-card p-3">
+           <div class="stat-icon mb-2">👥</div>
+    <div class="stat-number">@(ViewBag.ClientesCount ?? 0)</div>
+        <div class="stat-label">Clientes</div>
+           </div>
+                </div>
+       <div class="col-md-3">
+         <div class="stat-card p-3">
+           <div class="stat-icon mb-2">📦</div>
+     <div class="stat-number">@(ViewBag.ProductosCount ?? 0)</div>
+              <div class="stat-label">Productos</div>
+         </div>
+     </div>
+      <div class="col-md-3">
+       <div class="stat-card p-3">
+            <div class="stat-icon mb-2">🛒</div>
+ <div class="stat-number">@(ViewBag.PedidosCount ?? 0)</div>
+         <div class="stat-label">Pedidos</div>
+      </div>
+       </div>
+     <div class="col-md-3">
+      <div class="stat-card p-3">
+          <div class="stat-icon mb-2">💰</div>
+  <div class="stat-number">$@(ViewBag.VentasTotal ?? 0)</div>
+             <div class="stat-label">Ventas</div>
+           </div>
+     </div>
+            </div>
+        }
+        else
+        {
+     <div class="welcome-actions mb-4">
+       <a href="@Url.Action("Login", "Account")" class="btn btn-primary btn-lg me-3">
+       <i class="bi bi-box-arrow-in-right"></i> Iniciar Sesión
+    </a>
+  <a href="@Url.Action("Register", "Account")" class="btn btn-outline-primary btn-lg">
+    <i class="bi bi-person-plus"></i> Registrarse
+            </a>
+            </div>
+        }
+    </div>
+</div>
+
+@if (User.Identity.IsAuthenticated)
+{
+    <!-- Main Features Section -->
+    <div class="features-section mb-5">
+   <h3 class="text-center mb-4 h2">Módulos Principales</h3>
+      <div class="row g-4">
+            <div class="col-md-6 col-lg-3">
+                <div class="feature-card card h-100 text-center">
+           <div class="card-body">
+       <div class="feature-icon display-1 text-primary mb-3">👥</div>
+      <h5 class="card-title fw-bold">Clientes</h5>
+        <p class="card-text text-muted">Gestiona tu base de clientes y mantén un registro detallado</p>
+     <a href="@Url.Action("Index", "Cliente")" class="btn btn-primary">
+      <i class="bi bi-people"></i> Ver Clientes
+      </a>
+   </div>
+         </div>
+ </div>
+        
+          <div class="col-md-6 col-lg-3">
+             <div class="feature-card card h-100 text-center">
+        <div class="card-body">
+    <div class="feature-icon display-1 text-success mb-3">📦</div>
+  <h5 class="card-title fw-bold">Productos</h5>
+          <p class="card-text text-muted">Catálogo completo de tus artesanías y productos</p>
+         <a href="@Url.Action("Index", "Producto")" class="btn btn-success">
+  <i class="bi bi-box-seam"></i> Ver Productos
+    </a>
+         </div>
+            </div>
+   </div>
+    
+            <div class="col-md-6 col-lg-3">
+           <div class="feature-card card h-100 text-center">
+                 <div class="card-body">
+  <div class="feature-icon display-1 text-warning mb-3">🛒</div>
+     <h5 class="card-title fw-bold">Pedidos</h5>
+          <p class="card-text text-muted">Administra todas las ventas y órdenes de tus clientes</p>
+        <a href="@Url.Action("Index", "Pedido")" class="btn btn-warning">
+ <i class="bi bi-cart"></i> Ver Pedidos
+         </a>
+           </div>
+      </div>
+    </div>
+
+     <div class="col-md-6 col-lg-3">
+     <div class="feature-card card h-100 text-center">
+               <div class="card-body">
+      <div class="feature-icon display-1 text-info mb-3">📋</div>
+           <h5 class="card-title fw-bold">Detalles</h5>
+   <p class="card-text text-muted">Información detallada de todos los pedidos</p>
+           <a href="@Url.Action("Index", "DetallePedido")" class="btn btn-info">
+    <i class="bi bi-list-check"></i> Ver Detalles
+     </a>
+  </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Quick Actions Section -->
+    <div class="quick-actions-section mb-5">
+      <h4 class="text-center mb-4 h3">Acciones Rápidas</h4>
+     <div class="row g-3">
+    <div class="col-md-4">
+                <div class="action-card card">
+           <div class="card-body text-center">
+              <div class="action-icon mb-3">
+  <i class="bi bi-person-plus-fill display-4 text-primary"></i>
+               </div>
+       <h6 class="card-title">Agregar Cliente</h6>
+        <a href="@Url.Action("Create", "Cliente")" class="btn btn-outline-primary btn-sm w-100">
+      Nuevo Cliente
+    </a>
+         </div>
+    </div>
+            </div>
+       
+ <div class="col-md-4">
+            <div class="action-card card">
+         <div class="card-body text-center">
+    <div class="action-icon mb-3">
+          <i class="bi bi-plus-circle-fill display-4 text-success"></i>
+     </div>
+    <h6 class="card-title">Crear Producto</h6>
+        <a href="@Url.Action("Create", "Producto")" class="btn btn-outline-success btn-sm w-100">
+         Nuevo Producto
+       </a>
+       </div>
+      </div>
+            </div>
+
+     <div class="col-md-4">
+       <div class="action-card card">
+        <div class="card-body text-center">
+          <div class="action-icon mb-3">
+        <i class="bi bi-bag-plus-fill display-4 text-warning"></i>
+      </div>
+  <h6 class="card-title">Generar Pedido</h6>
+    <a href="@Url.Action("Create", "Pedido")" class="btn btn-outline-warning btn-sm w-100">
+              Nuevo Pedido
+             </a>
+           </div>
+     </div>
+    </div>
+ </div>
+  </div>
+
+    @if (User.IsInRole("Admin"))
+    {
+      <!-- Admin Section -->
+        <div class="admin-section mb-5">
+  <div class="admin-banner card border-danger">
+      <div class="card-body text-center">
+   <h4 class="text-danger mb-3">
+      <i class="bi bi-shield-fill-exclamation"></i> Panel de Administración
+        </h4>
+          <p class="text-muted mb-3">Accede a funciones avanzadas de administración del sistema</p>
+         <a href="@Url.Action("Dashboard", "Admin")" class="btn btn-danger btn-lg">
+     <i class="bi bi-speedometer2"></i> Ir al Dashboard
+     </a>
+    </div>
+      </div>
+      </div>
+    }
+}
+else
+{
+    <!-- Features for Non-Authenticated Users -->
+    <div class="features-showcase mb-5">
+        <h3 class="text-center mb-5 h2">¿Qué puedes hacer con nuestra plataforma?</h3>
+        <div class="row g-4">
+      <div class="col-md-6">
+     <div class="showcase-card card border-0">
+            <div class="card-body text-center p-4">
+      <div class="showcase-icon mb-3">
+                 <i class="bi bi-graph-up-arrow display-1 text-success"></i>
+        </div>
+       <h5 class="fw-bold">Gestión Completa</h5>
+            <p class="text-muted">Administra clientes, productos y pedidos desde una sola plataforma</p>
+    </div>
+         </div>
+          </div>
+        
+    <div class="col-md-6">
+    <div class="showcase-card card border-0">
+     <div class="card-body text-center p-4">
+          <div class="showcase-icon mb-3">
+      <i class="bi bi-shield-check display-1 text-primary"></i>
+               </div>
+ <h5 class="fw-bold">Seguro y Confiable</h5>
+                <p class="text-muted">Sistema de autenticación robusto con diferentes niveles de acceso</p>
+       </div>
+         </div>
+    </div>
+     </div>
+    </div>
+}

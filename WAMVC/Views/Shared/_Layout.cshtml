@@ -1,0 +1,272 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - WAMVC Artesanías</title>
+    
+    <!-- Favicon y Apple Touch Icon -->
+ <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎨</text></svg>">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/layout.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/WAMVC.styles.css" asp-append-version="true" />
+    
+    @await RenderSectionAsync("Styles", required: false)
+</head>
+<body>
+    <!-- Scroll Indicator -->
+    <div class="scroll-indicator" id="scroll-indicator"></div>
+
+    <!-- Loading Overlay -->
+    <div id="loading-overlay" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); z-index: 9999; display: flex; align-items: center; justify-content: center; transition: opacity 0.5s ease;">
+        <div class="text-center text-white">
+            <div class="spinner-border mb-3" role="status" style="width: 3rem; height: 3rem;">
+                <span class="visually-hidden">Cargando...</span>
+ </div>
+            <h5>Cargando WAMVC...</h5>
+        </div>
+    </div>
+
+    <header>
+    <nav class="navbar navbar-expand-lg navbar-light">
+            <div class="container-fluid">
+            <!-- Brand with enhanced styling -->
+      <a class="navbar-brand d-flex align-items-center" asp-area="" asp-controller="Home" asp-action="Index">
+       <span class="brand-icon me-2">🎨</span>
+           <span class="brand-text">WAMVC</span>
+   <small class="brand-subtitle ms-2 text-muted d-none d-md-inline">Artesanías</small>
+  </a>
+
+       <!-- Mobile toggle -->
+       <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse">
+        <span class="navbar-toggler-icon"></span>
+   </button>
+
+     <div class="navbar-collapse collapse d-lg-inline-flex justify-content-between">
+               <!-- Main Navigation -->
+   <ul class="navbar-nav flex-grow-1 me-auto">
+  <li class="nav-item">
+    <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">
+         <i class="bi bi-house"></i> Inicio
+        </a>
+         </li>
+
+     @if (User.Identity.IsAuthenticated)
+   {
+     <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+     <i class="bi bi-grid"></i> Módulos
+     </a>
+     <ul class="dropdown-menu">
+  <li><a class="dropdown-item" asp-controller="Cliente" asp-action="Index">
+          <i class="bi bi-people"></i> Clientes
+   </a></li>
+     <li><a class="dropdown-item" asp-controller="Producto" asp-action="Index">
+            <i class="bi bi-box-seam"></i> Productos
+      </a></li>
+          <li><a class="dropdown-item" asp-controller="Pedido" asp-action="Index">
+      <i class="bi bi-cart"></i> Pedidos
+         </a></li>
+     <li><a class="dropdown-item" asp-controller="DetallePedido" asp-action="Index">
+         <i class="bi bi-list-check"></i> Detalles
+     </a></li>
+           </ul>
+          </li>
+
+   @if (User.IsInRole("Admin"))
+           {
+      <li class="nav-item">
+       <a class="nav-link admin-link" asp-controller="Admin" asp-action="Dashboard">
+  <i class="bi bi-speedometer2"></i> Admin Panel
+         </a>
+       </li>
+       }
+
+        <li class="nav-item">
+   <a class="nav-link" asp-controller="TestAcceso" asp-action="Index">
+     <i class="bi bi-shield-check"></i> Accesos
+       </a>
+</li>
+     }
+
+      <li class="nav-item">
+         <a class="nav-link" asp-controller="Home" asp-action="Privacy">
+        <i class="bi bi-shield-lock"></i> Privacidad
+   </a>
+     </li>
+   </ul>
+
+           <!-- Right side navigation -->
+       <ul class="navbar-nav ms-auto">
+        <!-- Theme Toggle -->
+           <li class="nav-item">
+    <button id="theme-toggle" class="nav-link border-0 bg-transparent" title="Cambiar tema">
+    <i class="bi bi-moon"></i>
+  </button>
+          </li>
+
+    @if (User.Identity.IsAuthenticated)
+      {
+       <!-- User Menu -->
+   <li class="nav-item dropdown">
+       <a class="nav-link dropdown-toggle user-menu" href="#" role="button" data-bs-toggle="dropdown">
+  <div class="user-avatar">
+          <i class="bi bi-person-circle"></i>
+       </div>
+     <span class="d-none d-md-inline ms-2">@User.Identity.Name</span>
+      </a>
+   <ul class="dropdown-menu dropdown-menu-end user-dropdown">
+      <li class="dropdown-header">
+    <div class="user-info">
+        <strong>@User.Identity.Name</strong>
+        <small class="text-muted d-block">
+   Rol: @User.FindFirst(System.Security.Claims.ClaimTypes.Role)?.Value
+     </small>
+      </div>
+    </li>
+       <li><hr class="dropdown-divider"></li>
+     <li>
+  <a class="dropdown-item" href="#" onclick="showToast('Perfil próximamente disponible', 'info')">
+       <i class="bi bi-person"></i> Mi Perfil
+        </a>
+ </li>
+     <li>
+    <a class="dropdown-item" href="#" onclick="showToast('Configuración próximamente disponible', 'info')">
+       <i class="bi bi-gear"></i> Configuración
+     </a>
+     </li>
+      <li><hr class="dropdown-divider"></li>
+          <li>
+        <form method="post" asp-controller="Account" asp-action="Logout" class="d-inline w-100">
+           <button type="submit" class="dropdown-item text-danger">
+       <i class="bi bi-box-arrow-right"></i> Cerrar Sesión
+  </button>
+       </form>
+      </li>
+       </ul>
+</li>
+           }
+    else
+     {
+      <li class="nav-item">
+ <a class="nav-link" asp-controller="Account" asp-action="Login">
+           <i class="bi bi-box-arrow-in-right"></i> Iniciar Sesión
+    </a>
+     </li>
+       <li class="nav-item">
+      <a class="nav-link btn btn-outline-primary ms-2" asp-controller="Account" asp-action="Register">
+     <i class="bi bi-person-plus"></i> Registrarse
+          </a>
+         </li>
+      }
+       </ul>
+         </div>
+    </div>
+  </nav>
+  </header>
+
+    <!-- Main Content -->
+<main class="main-content">
+        <div class="container">
+  <!-- Breadcrumb (if needed) -->
+       @if (ViewData["ShowBreadcrumb"] as bool? == true)
+           {
+  <nav aria-label="breadcrumb" class="mb-4">
+<ol class="breadcrumb">
+     <li class="breadcrumb-item"><a href="@Url.Action("Index", "Home")">Inicio</a></li>
+     @if (ViewData["BreadcrumbItems"] != null)
+          {
+  @foreach (var item in ViewData["BreadcrumbItems"] as List<(string Text, string Url)>)
+ {
+  <li class="breadcrumb-item">
+     @if (!string.IsNullOrEmpty(item.Url))
+       {
+         <a href="@item.Url">@item.Text</a>
+}
+else
+   {
+     @item.Text
+    }
+     </li>
+     }
+           }
+     </ol>
+   </nav>
+      }
+
+    <!-- Flash Messages Area -->
+     <div id="flash-messages"></div>
+
+   <!-- Page Content -->
+        @RenderBody()
+     </div>
+    </main>
+
+    <!-- Enhanced Footer -->
+    <footer class="footer">
+   <div class="container">
+    <div class="row align-items-center">
+  <div class="col-md-6">
+       <p class="mb-0">
+&copy; @DateTime.Now.Year - <strong>WAMVC Artesanías</strong>
+     <span class="text-muted">| Sistema de Gestión</span>
+       </p>
+      </div>
+     <div class="col-md-6 text-md-end">
+       <div class="footer-links">
+ <a asp-controller="Home" asp-action="Privacy" class="me-3">Privacidad</a>
+          <a href="#" onclick="showToast('Soporte próximamente disponible', 'info')" class="me-3">Soporte</a>
+   @if (User.Identity.IsAuthenticated)
+         {
+   <small class="text-muted">
+      <i class="bi bi-person-check"></i> Conectado como: @User.Identity.Name
+    </small>
+     }
+      </div>
+           </div>
+        </div>
+         </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    
+    <!-- Initialize App -->
+    <script>
+   // Hide loading overlay
+      document.addEventListener('DOMContentLoaded', function() {
+   setTimeout(() => {
+     const loadingOverlay = document.getElementById('loading-overlay');
+         if (loadingOverlay) {
+       loadingOverlay.style.opacity = '0';
+  setTimeout(() => {
+  loadingOverlay.style.display = 'none';
+}, 500);
+          }
+     }, 800);
+
+            // Scroll indicator
+      const scrollIndicator = document.getElementById('scroll-indicator');
+      if (scrollIndicator) {
+           window.addEventListener('scroll', function() {
+       const scrollProgress = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+         scrollIndicator.style.width = scrollProgress + '%';
+        });
+      }
+        });
+</script>
+    
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
